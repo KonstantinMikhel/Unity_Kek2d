@@ -167,6 +167,11 @@ Prefab:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114784373708376272, guid: 67813b6faf65f2e48b92b71ba996270a,
+        type: 2}
+      propertyPath: whatIsGround.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67813b6faf65f2e48b92b71ba996270a, type: 2}
   m_IsPrefabParent: 0
@@ -383,6 +388,14 @@ Prefab:
         type: 2}
       propertyPath: m_Constraints
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838389260648962, guid: 97f5a8eecf17570468ed85d2b260ccf1, type: 2}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838389260648962, guid: 97f5a8eecf17570468ed85d2b260ccf1, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 97f5a8eecf17570468ed85d2b260ccf1, type: 2}
