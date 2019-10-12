@@ -1,42 +1,39 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementScript : MonoBehaviour {
-	
-	public float speed = 1f;
+public class Movement : MonoBehaviour
+{   
+    Rigidbody2D rigidbody;
+    public float speed = 10f;
+    private bool isGrounded = false;
 
-	public Rigidbody2D rb;
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
 
-	public GameObject ground;
+    void OnCollisionExit2D()
+    {
+        isGrounded = false;
+    }
 
-	//находится ли персонаж на земле или в прыжке?
-	private bool isGrounded = true;
-	//радиус определения соприкосновения с землей
-	private float groundRadius = 0.75f;
-	//ссылка на слой, представляющий землю
-	public LayerMask whatIsGround;
+    void Start()
+    {
+        rigidbody = GetComponent <Rigidbody2D>();
+    }
 
-	void Start () {
-		rb = GetComponent<Rigidbody2D>();
-		if (ground == null) {
-			ground = GameObject.FindWithTag ("Ground");
-		}
-	}
+    void Update()
+    {
+        float horizontalDirection = Input.GetAxis ("Horizontal");
+        rigidbody.velocity = new Vector3 (horizontalDirection * speed, 0, 0);
 
-	void Update () {
-		
-		Vector2 force = new Vector2 (0.0f, 15000.0f); 
-		bool jump = Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
-		if (jump && Physics2D.OverlapCircle(gameObject.transform.position, groundRadius, whatIsGround)) {
-			rb.AddForce (force);
-		}
-
-		float h = Input.GetAxisRaw("Horizontal");
-
-		print("Кек лол");
-
-		gameObject.transform.position = new Vector2 (transform.position.x + (h * speed), 
-			transform.position.y);
-	}
+        if (Input.GetKeyDown (KeyCode.Space) && isGrounded)
+        {
+            rigidbody.AddForce(new Vector3 (0, 15000, 0));
+        }
+    }
 }
